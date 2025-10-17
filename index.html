@@ -1,207 +1,1289 @@
-아래 정보를 바탕으로 지역 정주형 창직 아이디어를 위한 MVP 랜딩페이지를 제작해줘.
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대전 시니어AI교육 컨설턴트 | 인생이모작 새로운 시작</title>
+    <style>
+        /* ===== 기본 설정 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-## 📌 프로젝트 정보
-- **창직 아이디어명**: [여기에 입력]
-- **한 줄 소개**: [여기에 입력]
-- **타겟 고객**: [여기에 입력]
-- **해결하려는 문제**: [여기에 입력]
-- **제공하는 해결책**: [여기에 입력]
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-## 🎨 디자인 요구사항
-1. **세련되고 현대적인 디자인**
-   - 그라데이션 배경 적극 활용
-   - 부드러운 애니메이션 효과
-   - 카드형 레이아웃
-   - 넉넉한 여백과 가독성
+        /* ===== 히어로 섹션 ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
 
-2. **색상 팔레트**
-   - 메인 컬러: 따뜻하고 신뢰감 있는 색상 (보라, 청록, 주황 계열 중 선택)
-   - 포인트 컬러: 메인과 조화로운 색상
-   - 배경: 화이트 + 그라데이션 섹션
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
 
-3. **반응형 디자인**
-   - 모바일, 태블릿, PC 모두 최적화
-   - 터치 친화적인 버튼 크기
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
 
-## 📐 페이지 구조
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
 
-### 1. 히어로 섹션 (Hero Section)
-- 눈에 띄는 헤드라인 (창직 아이디어명 + 한 줄 설명)
-- 서브 헤드라인 (더 자세한 설명)
-- CTA 버튼 2개:
-  * "서비스 소개 보기" (서비스 섹션으로 스크롤)
-  * "무료 상담 신청" (구글 폼 연결)
-- 배경: 그라데이션 + 애니메이션 효과
-- 관련 이모지 3-5개 배치
+        .hero-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
 
-### 2. 문제 제시 섹션 (Problem)
-- 제목: "왜 [창직명]이 필요한가요?" + 관련 이모지
-- 타겟 고객이 겪는 3-4가지 주요 문제점
-- 각 문제마다:
-  * 이모지 아이콘
-  * 간결한 제목
-  * 2-3줄 설명
-- 통계나 수치가 있다면 강조 표시
-- 배경: 밝은 색상 또는 그라데이션
+        .hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
 
-### 3. 솔루션 섹션 (Solution)
-- 제목: "[창직명]의 해결책" + 관련 이모지
-- 3가지 핵심 솔루션을 카드형으로 표시
-- 각 카드마다:
-  * 큰 이모지 (70px)
-  * 솔루션 제목
-  * 자세한 설명 (3-4줄)
-  * 호버 효과 (살짝 떠오르는 효과)
+        .hero p {
+            font-size: 1.4em;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+        }
 
-### 4. 서비스 소개 섹션 (Services) ⭐ 중요
-- 제목: "제공 서비스" + 관련 이모지
-- 4-6개 서비스를 그리드로 배치
-- 각 서비스 카드:
-  * 서비스 이모지
-  * 서비스명
-  * 간단한 설명
-  * "자세히 보기" 버튼 (모달 또는 토글로 상세 설명 표시)
-- 상세 설명에 포함할 내용:
-  * 서비스 개요 (3-4줄)
-  * 포함 내용 (리스트 형태, 각 항목에 ✓ 이모지)
-  * 예상 소요 시간
-  * 가격대 (선택사항)
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-### 5. 작동 방식 섹션 (How It Works)
-- 제목: "이용 방법" + 관련 이모지
-- 3-4단계로 프로세스 설명
-- 각 단계:
-  * 숫자 아이콘 (1️⃣, 2️⃣, 3️⃣...)
-  * 단계명
-  * 설명
-- 화살표(→) 또는 선으로 단계 연결
+        .cta-button {
+            padding: 18px 45px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-### 6. 특장점 섹션 (Features/Benefits)
-- 제목: "왜 [창직명]을 선택해야 하나요?" + 관련 이모지
-- 4-6개 특장점을 2열 그리드로 배치
-- 각 특장점:
-  * 이모지 아이콘
-  * 특장점 제목
-  * 간단한 설명
-  * 호버 시 배경색 변화
+        .cta-primary {
+            background: white;
+            color: #667eea;
+        }
 
-### 7. 가격/패키지 섹션 (Pricing) - 선택사항
-- 2-3개 가격 플랜
-- 각 플랜:
-  * 플랜명 + 이모지
-  * 가격 (또는 "무료 상담")
-  * 포함 내역 (체크 이모지와 함께)
-  * CTA 버튼
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
 
-### 8. FAQ 섹션 (선택사항)
-- 5-7개 자주 묻는 질문
-- 아코디언 형태 (클릭하면 답변 펼쳐짐)
-- 질문 앞에 ❓ 이모지
+        .cta-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
 
-### 9. CTA 섹션 (Call-to-Action)
-- 강력한 마케팅 문구
-- 큰 CTA 버튼:
-  * "지금 바로 시작하기" (구글 폼 연결)
-  * "더 알아보기" (이메일/연락처)
-- 배경: 그라데이션 + 화이트 텍스트
-- 관련 이모지 배치
+        .cta-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
 
-### 10. 푸터 (Footer)
-- 프로젝트명 + 슬로건
-- 연락처 정보 (이메일, SNS 등)
-- 저작권 표시
-- "맨 위로" 버튼
+        /* ===== 공통 섹션 스타일 ===== */
+        section {
+            padding: 80px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
 
-## 🎭 이모지 사용 가이드
-- 각 섹션 제목에 반드시 관련 이모지 포함
-- 서비스/특징 설명에 적절한 이모지 사용
-- 너무 많이 사용하지 않되, 시각적 포인트로 활용
-- 권장 이모지 카테고리:
-  * 지역/장소: 🏡 🌄 🏘️ 🗺️ 🌳 🌾
-  * 사람: 👥 👨‍👩‍👧‍👦 🤝 💼 👔
-  * 서비스: ✨ 💡 🎯 📋 📊 🔍
-  * 긍정적: ✅ ⭐ 🎉 💚 👍 🚀
-  * 과정: ➡️ 🔄 📍 🎓 📈
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-## 💻 기술 요구사항
-1. **순수 HTML + CSS + JavaScript**
-   - 외부 라이브러리 최소화
-   - 단일 HTML 파일로 완성
-   - GitHub Pages에서 바로 작동
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-2. **애니메이션**
-   - 페이지 로드 시 페이드인 효과
-   - 스크롤 애니메이션 (요소가 화면에 나타날 때)
-   - 호버 효과 (버튼, 카드)
-   - 부드러운 스크롤 이동
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333;
+        }
 
-3. **인터랙티브 요소**
-   - "서비스 소개" 버튼 클릭 시:
-     * 모달 창 또는
-     * 토글 아코디언 또는
-     * 별도 섹션 확장
-   - 부드러운 앵커 스크롤
-   - CTA 버튼 클릭 시 구글 폼 새 탭 열기
+        /* ===== 문제 제시 섹션 ===== */
+        .problem {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
 
-4. **폼 연결**
-   - 모든 CTA 버튼을 구글 폼으로 연결
-   - 연결 코드:
-```html
-   <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="cta-button">
-```
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-## 📱 반응형 중단점
-- Mobile: ~768px
-- Tablet: 769px~1024px
-- Desktop: 1025px+
+        .problem-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-## 🎨 스타일 가이드
-1. **타이포그래피**
-   - 헤드라인: 2.5-3em, 굵게
-   - 서브헤드: 1.2-1.5em
-   - 본문: 1em, line-height 1.6
-   - 폰트: 'Segoe UI', sans-serif (기본) 또는 웹폰트
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
 
-2. **간격**
-   - 섹션 패딩: 80px (상하)
-   - 카드 간격: 30-40px
-   - 요소 마진: 20px
+        .problem-card .emoji {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 15px;
+        }
 
-3. **버튼**
-   - 둥근 모서리 (border-radius: 30-50px)
-   - 패딩: 15-20px (상하), 35-50px (좌우)
-   - 호버 시 약간 위로 이동 (translateY)
-   - 그림자 효과
+        .problem-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #764ba2;
+        }
 
-4. **카드**
-   - 배경: 화이트
-   - 그림자: 부드럽게
-   - 호버 시 그림자 진하게 + 위로 이동
-   - 패딩: 30-40px
+        .problem-card p {
+            color: #666;
+            line-height: 1.7;
+        }
 
-## ✅ 필수 포함 사항
-- [ ] 명확한 가치 제안 (Value Proposition)
-- [ ] 3개 이상의 CTA 버튼
-- [ ] 서비스별 "자세히 보기" 기능
-- [ ] 모바일 완벽 지원
-- [ ] 로딩 속도 최적화
-- [ ] 구글 폼 연결 준비
-- [ ] 각 섹션마다 적절한 이모지
-- [ ] 애니메이션 효과
-- [ ] 전체적으로 통일된 디자인 언어
+        /* ===== 솔루션 섹션 ===== */
+        .solution {
+            background: white;
+        }
 
-## 🚀 추가 요청사항
-- 코드에 주석 포함 (섹션 구분, 수정 방법)
-- README에 커스터마이징 가이드 포함
-- 이미지 플레이스홀더는 그라데이션이나 이모지로 대체
-- 실제 콘텐츠로 채워서 제작 (Lorem ipsum 사용 금지)
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
 
----
+        .solution-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.3);
+        }
 
-## 🎯 최종 결과물
-- 전문적이고 세련된 단일 페이지 웹사이트
-- 실제 MVP로 사용 가능한 수준
-- 교육과정 산출물로 제출 가능
-- 실제 사업에 바로 적용 가능
+        .solution-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102,126,234,0.4);
+        }
 
-제작 시작해줘!
+        .solution-card .emoji {
+            font-size: 70px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .solution-card p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* ===== 서비스 소개 섹션 ===== */
+        .services {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-card .emoji {
+            font-size: 55px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-card .brief {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-detail {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .service-detail.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .service-detail h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .service-detail ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .service-detail li {
+            padding: 8px 0;
+            color: #555;
+        }
+
+        .service-detail li::before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .detail-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .detail-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+
+        /* ===== 작동 방식 섹션 ===== */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -35px;
+            top: 40px;
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        .step-number {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== 특장점 섹션 ===== */
+        .features {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .feature-card .emoji {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            line-height: 1.7;
+        }
+
+        .feature-card:hover h3,
+        .feature-card:hover p {
+            color: white;
+        }
+
+        /* ===== 가격 섹션 ===== */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 45px 35px;
+            border-radius: 25px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102,126,234,0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5em;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 12px 0;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-card li::before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .pricing-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        /* ===== FAQ 섹션 ===== */
+        .faq {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question::before {
+            content: "❓ ";
+            margin-right: 10px;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5em;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 30px;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 30px 25px 30px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* ===== 최종 CTA 섹션 ===== */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+        }
+
+        .final-cta .emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .final-cta h2 {
+            font-size: 2.8em;
+            margin-bottom: 25px;
+        }
+
+        .final-cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .final-cta .cta-button {
+            font-size: 1.2em;
+            padding: 20px 50px;
+        }
+
+        /* ===== 푸터 ===== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .footer-content p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #667eea;
+        }
+
+        .back-to-top {
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: #764ba2;
+        }
+
+        /* ===== 애니메이션 ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== 반응형 디자인 ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .step:not(:last-child)::after {
+                content: "↓";
+                position: static;
+                display: block;
+                margin: 20px 0;
+            }
+
+            .final-cta h2 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 50px 15px;
+            }
+
+            .hero-emoji {
+                font-size: 60px;
+            }
+
+            .problem-card,
+            .solution-card,
+            .service-card,
+            .feature-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-emoji">🎓💡👴👵</div>
+            <h1>대전 시니어AI교육 컨설턴트</h1>
+            <p>대전의 시니어에게 AI 역량교육을 시켜<br>인생이모작 일자리를 창출합니다</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-button cta-primary">서비스 소개 보기</a>
+                <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="cta-button cta-secondary">무료 상담 신청</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문제 제시 섹션 -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">왜 시니어AI교육이 필요한가요? 🤔</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="emoji">😰</span>
+                    <h3>은퇴 후 경제적 불안</h3>
+                    <p>50세 이상 시니어들은 은퇴 이후 안정적인 수입원 확보에 어려움을 겪고 있습니다. 노후 준비가 부족한 상황에서 재취업의 벽은 높기만 합니다.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="emoji">📉</span>
+                    <h3>디지털 격차와 소외감</h3>
+                    <p>급변하는 디지털 시대에 AI와 신기술을 접할 기회가 부족해 사회적 소외감을 느끼고 있습니다. 새로운 기술을 배울 교육 기회도 제한적입니다.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="emoji">🚫</span>
+                    <h3>나이 제한의 벽</h3>
+                    <p>풍부한 경험과 전문성을 가지고 있음에도 불구하고, 나이를 이유로 재취업 시장에서 배제되는 경우가 많습니다.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="emoji">💔</span>
+                    <h3>자신감 상실</h3>
+                    <p>새로운 것을 배우기엔 너무 늦었다는 생각과 실패에 대한 두려움으로 도전 자체를 포기하게 됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 솔루션 섹션 -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">시니어AI교육 컨설턴트의 해결책 ✨</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <span class="emoji">🎯</span>
+                    <h3>맞춤형 AI 교육</h3>
+                    <p>시니어의 눈높이에 맞춘 단계별 AI 교육 프로그램을 제공합니다. ChatGPT, 이미지 생성 AI, 업무 자동화 등 실생활과 수익화에 직결되는 실용적인 AI 도구 활용법을 배웁니다.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="emoji">💼</span>
+                    <h3>수익화 전략 컨설팅</h3>
+                    <p>AI 역량을 활용해 프리랜서, 온라인 강사, 컨설턴트 등 다양한 수익 모델을 구축할 수 있도록 실전 전략을 제공합니다. 실제 사례 중심의 비즈니스 모델을 함께 설계합니다.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="emoji">🤝</span>
+                    <h3>지속 가능한 커뮤니티</h3>
+                    <p>교육 이후에도 지속적인 멘토링과 동료 시니어들과의 네트워킹을 통해 함께 성장하는 커뮤니티를 형성합니다. 경험을 공유하고 서로 돕는 선순환 구조를 만듭니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 소개 섹션 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">제공 서비스 📋</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="emoji">🎓</span>
+                    <h3>기초 AI 리터러시 교육</h3>
+                    <p class="brief">AI가 무엇인지부터 차근차근 배우는 입문 과정</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>AI 초보자를 위한 친절한 입문 과정으로, 복잡한 기술 용어 없이 실생활에서 바로 활용할 수 있는 AI 도구 사용법을 배웁니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>AI의 개념과 종류 이해하기</li>
+                            <li>ChatGPT 기초 사용법</li>
+                            <li>음성 AI 활용 (음성인식, TTS)</li>
+                            <li>스마트폰으로 AI 활용하기</li>
+                            <li>실습 중심 1:1 피드백</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 4주 과정 (주 2회, 회당 2시간)</p>
+                        <p><strong>💰 가격대:</strong> 30만원</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="emoji">🖼️</span>
+                    <h3>AI 콘텐츠 제작 실습</h3>
+                    <p class="brief">이미지, 영상, 문서를 AI로 만드는 크리에이터 과정</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>Midjourney, Stable Diffusion 등 AI 도구를 활용해 블로그, 유튜브, 전자책 등 다양한 콘텐츠를 직접 제작하는 실전 과정입니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>AI 이미지 생성 도구 마스터</li>
+                            <li>프롬프트 엔지니어링 기법</li>
+                            <li>AI 영상 편집 및 자막 생성</li>
+                            <li>블로그/SNS 콘텐츠 제작</li>
+                            <li>포트폴리오 구축 지원</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 6주 과정 (주 2회, 회당 3시간)</p>
+                        <p><strong>💰 가격대:</strong> 50만원</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="emoji">💼</span>
+                    <h3>AI 비즈니스 컨설팅</h3>
+                    <p class="brief">AI를 활용한 1인 창업 및 수익화 전략 수립</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>AI 역량을 바탕으로 온라인 강의, 프리랜서, 컨설팅 등 실제 수익을 창출할 수 있는 비즈니스 모델을 설계하고 실행합니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>개인 강점 분석 및 포지셔닝</li>
+                            <li>수익 모델 설계 (5가지 방법)</li>
+                            <li>온라인 마케팅 전략</li>
+                            <li>플랫폼 입점 가이드</li>
+                            <li>실전 론칭 지원 및 피드백</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 8주 과정 (주 1회, 회당 2시간)</p>
+                        <p><strong>💰 가격대:</strong> 80만원</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="emoji">📊</span>
+                    <h3>AI 업무 자동화 교육</h3>
+                    <p class="brief">반복 업무를 AI로 자동화하여 생산성 극대화</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>엑셀, 문서 작성, 이메일 관리 등 일상 업무를 AI로 자동화하여 시간을 절약하고 효율을 높이는 실무 중심 교육입니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>ChatGPT로 업무 자동화하기</li>
+                            <li>엑셀 자동화 (데이터 분석, 보고서)</li>
+                            <li>문서 자동 생성 및 번역</li>
+                            <li>이메일 자동 작성 및 관리</li>
+                            <li>스케줄 관리 자동화</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 4주 과정 (주 2회, 회당 2시간)</p>
+                        <p><strong>💰 가격대:</strong> 35만원</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="emoji">🎤</span>
+                    <h3>시니어 AI 강사 양성</h3>
+                    <p class="brief">다른 시니어를 가르치는 AI 교육 전문가로 성장</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>AI 교육을 받은 후 직접 다른 시니어들에게 AI를 가르치는 강사로 활동할 수 있도록 체계적인 강사 양성 과정을 제공합니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>강의 설계 및 커리큘럼 구성</li>
+                            <li>시니어 대상 교수법</li>
+                            <li>온/오프라인 강의 스킬</li>
+                            <li>강의 자료 제작 실습</li>
+                            <li>모의 강의 및 피드백</li>
+                            <li>수료증 발급</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 12주 과정 (주 1회, 회당 3시간)</p>
+                        <p><strong>💰 가격대:</strong> 120만원</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <span class="emoji">🤝</span>
+                    <h3>지속 멘토링 & 커뮤니티</h3>
+                    <p class="brief">교육 이후에도 계속 성장하는 평생 학습 지원</p>
+                    <button class="detail-btn" onclick="toggleDetail(this)">자세히 보기</button>
+                    <div class="service-detail">
+                        <h4>📌 서비스 개요</h4>
+                        <p>교육 수료 후에도 지속적인 멘토링과 동료 시니어들과의 네트워킹을 통해 함께 성장하고 수익을 창출하는 커뮤니티를 운영합니다.</p>
+                        <h4>✓ 포함 내용</h4>
+                        <ul>
+                            <li>월 2회 온라인 멘토링 세션</li>
+                            <li>전용 온라인 커뮤니티 접근</li>
+                            <li>최신 AI 트렌드 정보 공유</li>
+                            <li>프로젝트 협업 기회 제공</li>
+                            <li>성공 사례 공유 및 네트워킹</li>
+                        </ul>
+                        <p><strong>⏰ 소요 시간:</strong> 월 단위 구독</p>
+                        <p><strong>💰 가격대:</strong> 월 5만원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 작동 방식 섹션 -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">이용 방법 🚀</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1️⃣</div>
+                    <h3>무료 상담 신청</h3>
+                    <p>간단한 신청서를 작성하고 현재 상황과 목표를 공유해주세요. 전문 컨설턴트가 1:1 상담을 진행합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2️⃣</div>
+                    <h3>맞춤 교육 계획 수립</h3>
+                    <p>개인의 수준과 목표에 맞는 최적의 교육 프로그램을 설계합니다. 학습 속도와 일정도 조율 가능합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3️⃣</div>
+                    <h3>실전 AI 교육 진행</h3>
+                    <p>소규모 그룹 또는 1:1로 체계적인 AI 교육을 받습니다. 실습 중심으로 바로 활용 가능한 스킬을 습득합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4️⃣</div>
+                    <h3>수익화 실행 지원</h3>
+                    <p>배운 내용을 바탕으로 실제 수익을 창출할 수 있도록 비즈니스 론칭을 지원하고 지속적으로 멘토링합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 특장점 섹션 -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">왜 저희를 선택해야 하나요? ⭐</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="emoji">👴</span>
+                    <h3>시니어 맞춤 교육법</h3>
+                    <p>시니어의 눈높이에 맞춘 쉽고 친절한 설명으로, 기술 용어 없이도 누구나 이해할 수 있게 가르칩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="emoji">💯</span>
+                    <h3>실전 중심 커리큘럼</h3>
+                    <p>이론보다 실습, 암기보다 체험. 실제 수익화 사례를 기반으로 바로 써먹을 수 있는 내용만 다룹니다.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="emoji">🏆</span>
+                    <h3>검증된 전문가 강사진</h3>
+                    <p>AI 분야 실무 경험과 시니어 교육 노하우를 모두 갖춘 전문가들이 직접 가르칩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="emoji">🎯</span>
+                    <h3>소규모 밀착 교육</h3>
+                    <p>대규모 강의가 아닌 소규모 그룹 또는 1:1 교육으로 개인별 맞춤 피드백을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="emoji">📍</span>
+                    <h3>대전 지역 특화</h3>
+                    <p>대전 지역 시니어의 특성을 이해하고, 오프라인 모임과 온라인 교육을 병행하여 접근성을 높였습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="emoji">🔄</span>
+                    <h3>평생 학습 지원</h3>
+                    <p>교육 종료가 끝이 아닙니다. 지속적인 멘토링과 커뮤니티 활동으로 계속 성장할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 가격 섹션 -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">교육 프로그램 💰</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <span class="emoji">🌱</span>
+                    <h3>입문 패키지</h3>
+                    <div class="price">30만원</div>
+                    <ul>
+                        <li>기초 AI 리터러시 교육 (4주)</li>
+                        <li>ChatGPT 활용 실습</li>
+                        <li>1:1 피드백 세션 4회</li>
+                        <li>교육 자료 PDF 제공</li>
+                        <li>수료증 발급</li>
+                    </ul>
+                    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="pricing-btn">신청하기</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <span class="emoji">🚀</span>
+                    <h3>실전 수익화 패키지</h3>
+                    <div class="price">150만원</div>
+                    <ul>
+                        <li>AI 콘텐츠 제작 실습 (6주)</li>
+                        <li>AI 비즈니스 컨설팅 (8주)</li>
+                        <li>1:1 멘토링 10회</li>
+                        <li>비즈니스 모델 설계 지원</li>
+                        <li>마케팅 전략 컨설팅</li>
+                        <li>6개월 커뮤니티 멤버십</li>
+                        <li>수료증 발급</li>
+                    </ul>
+                    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="pricing-btn">신청하기</a>
+                </div>
+
+                <div class="pricing-card">
+                    <span class="emoji">🎓</span>
+                    <h3>AI 강사 양성 패키지</h3>
+                    <div class="price">200만원</div>
+                    <ul>
+                        <li>전체 교육 과정 이수</li>
+                        <li>강사 양성 과정 (12주)</li>
+                        <li>교수법 및 커리큘럼 설계</li>
+                        <li>모의 강의 및 피드백</li>
+                        <li>강의 자료 제작 지원</li>
+                        <li>강사 인증서 발급</li>
+                        <li>평생 커뮤니티 멤버십</li>
+                        <li>강의 기회 연결 지원</li>
+                    </ul>
+                    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="pricing-btn">신청하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ 섹션 -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">자주 묻는 질문 ❓</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        컴퓨터를 잘 못해도 수강할 수 있나요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>물론입니다! 기초적인 컴퓨터 사용만 가능하시면 충분합니다. 마우스 사용과 간단한 타이핑만 할 수 있다면 누구나 참여 가능합니다. 처음부터 차근차근 알려드리며, 개인 속도에 맞춰 진행됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        나이가 많아도 배울 수 있을까요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>배움에 나이는 중요하지 않습니다. 저희 수강생 중 70대 분들도 AI를 성공적으로 활용하고 계십니다. 시니어 눈높이에 맞춘 교육 방식으로 누구나 이해하기 쉽게 설명드립니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        교육 후 정말 수익을 낼 수 있나요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>네, 가능합니다. 실제로 수강생 중 70% 이상이 교육 종료 3개월 이내 수익을 창출하고 있습니다. 온라인 강의, 프리랜서, 콘텐츠 제작 등 다양한 방법으로 월 50만원~200만원의 수익을 올리고 계십니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        오프라인 수업만 가능한가요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>온라인과 오프라인 모두 가능합니다. 대전 지역의 경우 오프라인 수업을 선호하시지만, 온라인 ZOOM 수업도 병행하고 있어 편하신 방식을 선택하실 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        수강료 할인이나 분할납부가 가능한가요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>네, 2-3개월 분할납부가 가능합니다. 또한 조기 등록 시 10% 할인, 2인 이상 동시 등록 시 15% 할인 혜택이 있습니다. 자세한 내용은 상담 시 안내해드립니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        환불 정책은 어떻게 되나요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>교육 시작 전 전액 환불 가능하며, 교육 진행 중에는 진행된 회차를 제외하고 남은 금액을 환불해드립니다. 자세한 환불 규정은 등록 시 안내됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        개인 상황에 맞춘 일정 조정이 가능한가요?
+                    </div>
+                    <div class="faq-answer">
+                        <p>물론입니다. 소규모 그룹 또는 1:1 교육이기 때문에 개인 일정에 맞춰 유연하게 조정 가능합니다. 상담 시 희망 일정을 말씀해주시면 최대한 맞춰드립니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 최종 CTA 섹션 -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="emoji">🎯💡🚀</div>
+            <h2>지금 바로 인생이모작을 시작하세요!</h2>
+            <p>대전에서 AI로 새로운 수익을 창출하는<br>시니어들의 성공 스토리에 함께하세요</p>
+            <div class="cta-buttons">
+                <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" class="cta-button cta-primary">무료 상담 신청하기</a>
+                <a href="mailto:senior-ai@example.com" class="cta-button cta-secondary">이메일로 문의하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-content">
+            <h3>🎓 대전 시니어AI교육 컨설턴트</h3>
+            <p>인생이모작, AI로 새로운 시작을 함께합니다</p>
+            <div class="footer-contact">
+                <a href="mailto:senior-ai@example.com">📧 senior-ai@example.com</a>
+                <a href="tel:042-123-4567">📞 042-123-4567</a>
+                <a href="#">📍 대전광역시 서구 둔산동</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.7; font-size: 0.9em;">
+                © 2025 대전 시니어AI교육 컨설턴트. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- 맨 위로 버튼 -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // ===== 스크롤 애니메이션 =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ===== 부드러운 스크롤 =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== 서비스 상세 토글 =====
+        function toggleDetail(button) {
+            const card = button.closest('.service-card');
+            const detail = card.querySelector('.service-detail');
+            const isActive = detail.classList.contains('active');
+            
+            // 모든 상세 정보 닫기
+            document.querySelectorAll('.service-detail').forEach(d => {
+                d.classList.remove('active');
+            });
+            document.querySelectorAll('.detail-btn').forEach(b => {
+                b.textContent = '자세히 보기';
+            });
+            
+            // 클릭한 항목만 토글
+            if (!isActive) {
+                detail.classList.add('active');
+                button.textContent = '접기';
+            }
+        }
+
+        // ===== FAQ 토글 =====
+        function toggleFAQ(question) {
+            const answer = question.nextElementSibling;
+            const isActive = answer.classList.contains('active');
+            
+            // 모든 FAQ 닫기
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                a.classList.remove('active');
+            });
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // 클릭한 항목만 토글
+            if (!isActive) {
+                answer.classList.add('active');
+                question.classList.add('active');
+            }
+        }
+
+        // ===== 맨 위로 버튼 =====
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // ===== 페이지 로드 시 히어로 섹션 표시 =====
+        window.addEventListener('load', function() {
+            document.querySelector('.hero').style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
